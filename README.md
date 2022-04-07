@@ -6,3 +6,5 @@ Pentru a seta pe ce masini vrei sa fie autopilot-ul, intri in client.lua si modi
 Comenzi:
 /autopilot
 /ap
+
+NU ESTE FACUT DE MINE!
