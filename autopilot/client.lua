@@ -27,7 +27,7 @@ if IsVehicleModel(GetVehiclePedIsIn(GetPlayerPed(-1), false), GetHashKey("masina
 			local vehicles = GetVehiclePedIsIn(players,false)
 			local coordss = GetEntityCoords(players)
 		TaskVehicleDriveToCoordLongrange(players, vehicles, coordss.x, coordss.y, coordss.z, speed, 447, 2.0)
-		ShowNotification("~p~[~w~AutoPilot~p~]~w~ Oprit")
+                vRP.notify({"Succes: Ti-ai oprit autopilot-ul!"})
 			autopilotActive = false
 	else 
 	  local player = GetPlayerPed(-1)
@@ -36,7 +36,7 @@ if IsVehicleModel(GetVehiclePedIsIn(GetPlayerPed(-1), false), GetHashKey("masina
 	  local displaytext = GetDisplayNameFromVehicleModel(model)
 	  local blip = GetFirstBlipInfoId(8)
 	  if (blip ~= nil and blip ~= 0) then
-		  ShowNotification("~p~[~w~AutoPilot~p~]~w~ Pornit")
+                  vRP.notify({"Succes: Ti-ai pornit autopilot-ul!"})
 		  local coord = GetBlipCoords(blip)
 		  blipX = coord.x
 		  blipY = coord.y
@@ -45,20 +45,13 @@ if IsVehicleModel(GetVehiclePedIsIn(GetPlayerPed(-1), false), GetHashKey("masina
 		  TaskVehicleDriveToCoordLongrange(player, vehicle, blipX, blipY, blipZ, speed, 447, 2.0)
 
 	  else
-		  ShowNotification("~p~[~w~AutoPilot~p~]~w~ Nu ai setat niciun punct pe GPS")
+                  vRP.notify({"Failed: Nu ai setat niciun punct pe GPS"})
 	  end
 	end
 else
-    ShowNotification("~p~[~w~AutoPilot~p~]~w~ Acest autovehicul nu are autopilot!")
+    vRP.notify({"Failed: Acest autovehicul nu are autopilot!"})
 end
 end)
-
-
-function ShowNotification(text)
-	SetNotificationTextEntry("STRING")
-	AddTextComponentString(text)
-	DrawNotification(true, false)
-end
 
 Citizen.CreateThread(function()
     while true do
@@ -80,7 +73,7 @@ Citizen.CreateThread(function()
               SetVehicleForwardSpeed(vehicle,6.0)
               Citizen.Wait(200)
               SetVehicleForwardSpeed(vehicle,0.0)
-              ShowNotification("~p~[~w~AutoPilot~p~]~w~ Ai ajuns la destinatie!")
+              vRP.notify({"Succes: Ai ajuns la destinatie!"})
               autopilotActive = false
            end
            
